@@ -13,10 +13,9 @@ const PokemonPreview = ({ pokemonURL }) => {
   }, []);
 
   return (
-    <article className="text-center bg-white rounded-3xl relative font-semibold capitalize pb-4 shadow-lg shadow-slate-400/10 border-solid border-2 border-transparent hover:border-slate-200 cursor-pointer">
-      <header className="h-8">
+    <article className="text-center bg-white rounded-3xl font-semibold capitalize pb-4 shadow-lg shadow-slate-400/10 border-solid border-2 border-transparent hover:border-slate-200 cursor-pointer">
+      <header className="h-22">
         <img
-          className="absolute m-auto -top-48 left-0 right-0 bottom-0"
           src={
             pokemon?.sprites.versions["generation-v"]["black-white"]
               .front_default
