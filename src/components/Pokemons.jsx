@@ -2,18 +2,17 @@ import { IconSearch } from "@tabler/icons-react";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import PokemonList from "./PokemonList";
-import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
+import { useIntersectionObserver } from "@uidotdev/usehooks";
 
-const INITIAL_LIMIT = 10;
-const INCREASE_LIMIT = 10;
+const INITIAL_LIMIT = 20;
+const INCREASE_LIMIT = 20;
 
 const Pokemons = () => {
   const [allPokemons, setAllPokemons] = useState([]);
   const [pokemonName, setPokemonName] = useState("");
   const [limit, setLimit] = useState(INITIAL_LIMIT);
 
-  const targetObserver = useRef(null);
-  const entry = useIntersectionObserver(targetObserver, {});
+  const [ref, entry] = useIntersectionObserver({});
   const isVisible = !!entry?.isIntersecting;
 
   const pokemonsByName = allPokemons.filter((pokemon) =>
@@ -31,8 +30,8 @@ const Pokemons = () => {
   }, []);
 
   useEffect(() => {
-    if (isVisible) {
-      const maxPokemons = pokemonsByName.length;
+    const maxPokemons = pokemonsByName.length;
+    if (isVisible && maxPokemons !== 0) {
       const newLimit = limit + INCREASE_LIMIT;
       newLimit > maxPokemons ? setLimit(maxPokemons) : setLimit(newLimit);
     }
@@ -54,7 +53,10 @@ const Pokemons = () => {
             name="pokemonName"
             onChange={handleChangePokemonName}
           />
-          <button className="border-transparent bg-red-500 p-2 rounded-xl shadow-lg shadow-red-500/50 hover:bg-red-400 transition-colors">
+          <button
+            type="button"
+            className="border-transparent bg-red-500 p-2 rounded-xl shadow-lg shadow-red-500/50 hover:bg-red-400 transition-colors"
+          >
             <IconSearch color="white" stroke={3} />
           </button>
         </div>
@@ -62,7 +64,7 @@ const Pokemons = () => {
       <PokemonList pokemons={pokemonsByName.slice(0, limit)} />
 
       {/* Target Observer */}
-      <span ref={targetObserver}></span>
+      <span ref={ref}></span>
     </section>
   );
 };
