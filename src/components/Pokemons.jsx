@@ -1,10 +1,10 @@
 import { IconSearch } from "@tabler/icons-react";
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import PokemonList from "./PokemonList";
 import { useIntersectionObserver } from "@uidotdev/usehooks";
 
-const INITIAL_LIMIT = 20;
+const INITIAL_LIMIT = 40;
 const INCREASE_LIMIT = 20;
 
 const Pokemons = () => {
@@ -44,9 +44,9 @@ const Pokemons = () => {
   return (
     <section className="p-4 py-5">
       <form>
-        <div className="bg-white p-4 flex rounded-2xl">
+        <div className="bg-[#2d3a54] p-4 flex rounded-2xl text-lg">
           <input
-            className="text-lg outline-none border-transparent focus:border-transparent focus:ring-0 flex-1"
+            className="outline-none flex-1 bg-[#2d3a54] text-white"
             type="text"
             autoComplete="off"
             placeholder="Search your Pokemon"
@@ -55,9 +55,9 @@ const Pokemons = () => {
           />
           <button
             type="button"
-            className="border-transparent bg-red-500 p-2 rounded-xl shadow-lg shadow-red-500/50 hover:bg-red-400 transition-colors"
+            className="bg-[#162B40] p-2 rounded-xl shadow-lg shadow-[#162B40]/50 hover:bg-[#294561] transition-colors"
           >
-            <IconSearch color="white" stroke={3} />
+            <IconSearch color="#5CE9D3" stroke={3} />
           </button>
         </div>
       </form>
